@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SpendLens — AI Spend Audit for Startups
 
-## Getting Started
+**SpendLens** is a free AI spend audit tool that helps startup founders and engineering managers discover where they're overspending on AI tools (Cursor, Copilot, Claude, ChatGPT, Gemini, Windsurf) and surfaces actionable savings opportunities. It's a lead-generation asset for [Credex](https://credex.rocks), which sells discounted AI infrastructure credits.
 
-First, run the development server:
+Think: **"Mint for AI tool spend."**
+
+---
+
+## Screenshots
+
+> **Note:** Replace these placeholders with actual screenshots after deployment.
+
+| Landing Page | Audit Results | Shareable Report |
+|---|---|---|
+| `[screenshot: hero + form]` | `[screenshot: savings + breakdown]` | `[screenshot: public audit page]` |
+
+---
+
+## Quick Start
 
 ```bash
+# Clone the repo
+git clone https://github.com/your-org/spendlens.git
+cd spendlens
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Fill in your keys (see ENV VARIABLES section below)
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Run tests
+npm run test
+
+# Type check
+npm run type-check
+
+# Lint
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ENV Variables Needed
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Required | Description |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | For persistence | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | For persistence | Supabase anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | For persistence | Supabase service role key |
+| `ANTHROPIC_API_KEY` | For AI summaries | Anthropic API key (falls back to template) |
+| `RESEND_API_KEY` | For emails | Resend API key (skips email if missing) |
+| `RESEND_FROM_EMAIL` | For emails | Sender email address |
+| `NEXT_PUBLIC_BASE_URL` | For share links | Production URL |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> **Graceful degradation:** The app works fully without any external services — audits run client-side, AI summaries fall back to deterministic templates, DB saves are skipped.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Decisions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Single-page form + results (no multi-step wizard)
+**Why:** Reduces friction. Users can see all tools at once, and the form-to-results transition is a smooth scroll. Multi-step wizards have higher drop-off rates for lead-gen tools.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Audit engine runs on the server AND can run on the client
+**Why:** The API route runs the full audit server-side (to save to DB), but the shared audit page re-runs the engine client-side from saved `tools_json`. This means shared pages never need a second DB query and work even if Supabase is down.
 
-## Deploy on Vercel
+### 3. In-memory rate limiting instead of Redis
+**Why:** For MVP, an in-memory Map works for single-instance deployments. The rate limit resets on deploy, which is acceptable at low volume. ARCHITECTURE.md documents the Redis upgrade path for 10k+/day.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Free plans excluded from recommendations
+**Why:** Suggesting "downgrade to Free" is not actionable — free tiers have severe usage limits that make them impractical for teams. We only recommend paid plan alternatives.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. Honeypot over CAPTCHA for abuse protection
+**Why:** CAPTCHAs add friction to a lead-gen funnel. A hidden honeypot field silently catches bots without degrading UX for real users.
+
+---
+
+## Deployed URL
+
+> Replace with actual Vercel deployment URL: `https://spendlens.vercel.app`
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router) + TypeScript
+- **Styling:** Tailwind CSS v4 + shadcn/ui
+- **Database:** Supabase (PostgreSQL)
+- **Email:** Resend
+- **AI:** Anthropic Claude API (claude-sonnet-4-20250514)
+- **Testing:** Vitest (11 tests)
+- **CI:** GitHub Actions
+- **Deployment:** Vercel
