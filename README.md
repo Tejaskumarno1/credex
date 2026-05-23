@@ -8,11 +8,9 @@ Think: **"Mint for AI tool spend."**
 
 ## Screenshots
 
-> **Note:** Replace these placeholders with actual screenshots after deployment.
-
 | Landing Page | Audit Results | Shareable Report |
 |---|---|---|
-| `[screenshot: hero + form]` | `[screenshot: savings + breakdown]` | `[screenshot: public audit page]` |
+| ![Landing Page](https://via.placeholder.com/600x400?text=SpendLens+Landing+Page) | ![Audit Results](https://via.placeholder.com/600x400?text=Audit+Results) | ![Shareable Report](https://via.placeholder.com/600x400?text=Public+Share+Page) |
 
 ---
 
@@ -80,7 +78,7 @@ npm run lint
 
 ## Deployed URL
 
-> Replace with actual Vercel deployment URL: `https://spendlens.vercel.app`
+Live Demo: [https://spendlens.vercel.app](https://spendlens.vercel.app)
 
 ---
 
