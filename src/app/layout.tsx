@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "SpendLens — Free AI Spend Audit for Startups",
+  title: "SpendLens — Free AI Spend Audit | by Credex",
   description:
-    "Audit your team's AI tool spend in 2 minutes. Get personalized recommendations to cut costs on Cursor, Copilot, Claude, ChatGPT, and more. 100% free.",
+    "Audit your team's AI tool spend in 2 minutes. Get personalized recommendations to cut costs on Cursor, Copilot, Claude, ChatGPT, and more. Save up to 50% on AI credits through Credex.",
   keywords: [
     "AI spend audit",
     "AI tool costs",
@@ -27,18 +24,23 @@ export const metadata: Metadata = {
     "ChatGPT pricing",
     "AI budget",
     "AI cost optimization",
+    "buy AI credits",
+    "sell cloud credits",
+    "Credex",
+    "OpenAI credits",
+    "AWS credits",
   ],
   authors: [{ name: "Credex", url: "https://credex.rocks" }],
   openGraph: {
-    title: "SpendLens — Free AI Spend Audit for Startups",
+    title: "SpendLens — Free AI Spend Audit | by Credex",
     description:
-      "Audit your team's AI tool spend in 2 minutes. Find savings across Cursor, Copilot, Claude, ChatGPT and more.",
+      "Audit your team's AI tool spend in 2 minutes. Find savings across Cursor, Copilot, Claude, ChatGPT and more. Save up to 50% with Credex.",
     type: "website",
-    siteName: "SpendLens",
+    siteName: "SpendLens by Credex",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SpendLens — Free AI Spend Audit for Startups",
+    title: "SpendLens — Free AI Spend Audit | by Credex",
     description:
       "Audit your team's AI tool spend in 2 minutes. Find savings across Cursor, Copilot, Claude, ChatGPT and more.",
   },
@@ -52,9 +54,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-[#F4F4F4] text-[#1A1A1A] selection:bg-[#0FF39540] selection:text-[#00251A]">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>

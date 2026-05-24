@@ -1,0 +1,44 @@
+# Project Status & To-Do List
+
+Based on the requirements in `plan.txt`, here is the current status of the project and the remaining tasks to complete before submission.
+
+## COMPLETED (What's Done)
+1. **MVP Core Features**:
+   - Spend input form with required tools (Cursor, Copilot, Claude, ChatGPT, Gemini, etc.).
+   - Audit engine logic for plan fit, same-vendor alternatives, cross-tool alternatives, and API redundancy.
+   - Audit results page displaying savings and reasoning.
+   - AI-generated personalized summary using Anthropic API.
+   - Lead capture & storage (connected to Supabase).
+   - Shareable result URL functionality.
+2. **Technical/Engineering Files**:
+   - `ARCHITECTURE.md`
+   - `TESTS.md` (and tests in `tests/auditEngine.test.ts`)
+   - `PROMPTS.md`
+   - `PRICING_DATA.md`
+   - `.github/workflows/ci.yml` (CI/CD pipeline set up)
+3. **Entrepreneurial Files**:
+   - `GTM.md`
+   - `ECONOMICS.md`
+   - `LANDING_COPY.md`
+   - `METRICS.md`
+
+---
+
+## TO-DO (What Needs to be Done)
+
+### 1. Fill Out Remaining Documentation
+- [ ] **`DEVLOG.md`**: Fill out the 7 daily entries. Be honest about hours worked, tasks, learnings, and blockers. *Warning: Ensure your git commit history matches this (commits on at least 5 distinct calendar days).*
+- [ ] **`REFLECTION.md`**: Answer the 5 specific questions (hardest bug, reversed decision, week 2 plans, AI usage disclosure, and self-ratings out of 10).
+- [ ] **`USER_INTERVIEWS.md`**: Conduct 3 actual, real 10-15 minute user interviews with potential users and document the specific notes, quotes, and surprises. *Warning: Faking this will result in automatic rejection.*
+
+### 2. Final Polish & Deployment
+- [ ] **Deploy the App**: Deploy to Vercel, Netlify, or similar. Localhost screenshots do not count.
+- [ ] **Update `README.md`**: 
+  - Add the live deployed URL to the README.
+  - Replace the placeholder texts with 3+ actual screenshots of your deployed app (or a 30-sec video/Loom link).
+- [ ] **Lighthouse Check**: Run a Lighthouse audit on the *deployed* URL to ensure mobile scores hit: Performance ≥ 85, Accessibility ≥ 90, Best Practices ≥ 90.
+
+### 3. Final Submission
+- [ ] Ensure the GitHub repository is set to **Public**.
+- [ ] Verify there are no private API keys or secrets hardcoded in the codebase (must use `.env`).
+- [ ] Submit the Google Form with your Public GitHub URL and Live Deployed URL before the 7-day deadline expires.

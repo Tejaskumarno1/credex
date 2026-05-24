@@ -81,6 +81,18 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* ── Credex Brand Tokens ── */
+  --credex-neon: #0FF395;
+  --credex-neon-20: rgba(15, 243, 149, 0.2);
+  --credex-neon-10: rgba(15, 243, 149, 0.1);
+  --credex-neon-05: rgba(15, 243, 149, 0.05);
+  --credex-dark: #00251A;
+  --credex-deep: #0E272B;
+  --credex-black: #1A1A1A;
+  --credex-light: #F4F4F4;
+  --credex-coral: #FF6B4A;
+  --credex-forest: #086841;
 }
 
 .dark {
@@ -126,5 +138,175 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
   }
+}
+
+/* ── Credex Premium Design System ── */
+
+/* Animated gradient glow effect */
+@keyframes credex-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes credex-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes credex-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes credex-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes credex-pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes credex-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.credex-glow {
+  animation: credex-glow 3s ease-in-out infinite;
+}
+
+.credex-float {
+  animation: credex-float 4s ease-in-out infinite;
+}
+
+.credex-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(15, 243, 149, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: credex-shimmer 3s ease-in-out infinite;
+}
+
+.credex-slide-up {
+  animation: credex-slide-up 0.6s ease-out forwards;
+}
+
+/* Glassmorphism utility classes */
+.credex-glass {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateZ(0);
+}
+
+.credex-glass-dark {
+  background: rgba(14, 39, 43, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(15, 243, 149, 0.1);
+}
+
+/* Premium card hover effect */
+.credex-card-hover {
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.credex-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 40px -12px rgba(0, 37, 26, 0.15),
+    0 0 0 1px rgba(15, 243, 149, 0.08);
+}
+
+/* Neon green button glow */
+.credex-btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.credex-btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #0FF395, #086841, #0FF395);
+  background-size: 200% 200%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: credex-gradient-shift 3s ease infinite;
+}
+.credex-btn-glow:hover::after {
+  opacity: 1;
+}
+
+/* Grid background pattern */
+.credex-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(0, 37, 26, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 37, 26, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.credex-grid-bg-dark {
+  background-image:
+    linear-gradient(to right, rgba(15, 243, 149, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 243, 149, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Gradient text utility */
+.credex-text-gradient {
+  background: linear-gradient(135deg, #0FF395 0%, #086841 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle noise texture overlay */
+.credex-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Staggered animation delays for children */
+.credex-stagger > * {
+  animation: credex-slide-up 0.5s ease-out both;
+}
+.credex-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.credex-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.credex-stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.credex-stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.credex-stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.credex-stagger > *:nth-child(6) { animation-delay: 0.3s; }
+.credex-stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.credex-stagger > *:nth-child(8) { animation-delay: 0.4s; }
+.credex-stagger > *:nth-child(9) { animation-delay: 0.45s; }
+.credex-stagger > *:nth-child(10) { animation-delay: 0.5s; }
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--credex-light);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 37, 26, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 37, 26, 0.4);
 }

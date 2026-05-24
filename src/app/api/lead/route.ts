@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate required fields
-    const { email, auditId, totalSavingsMonthly, totalSavingsAnnual, summary } = body;
+    const { email, auditId, totalSavingsMonthly, totalSavingsAnnual, summary, tools } = body;
     if (!email || !auditId) {
       return NextResponse.json(
         { error: "Email and audit ID are required." },
@@ -75,6 +75,7 @@ export async function POST(request: NextRequest) {
           summary: summary || "Your AI spend audit is ready.",
           auditUrl,
           isHighSavings,
+          tools: tools || [],
         });
       }
     } catch (emailError) {

@@ -37,7 +37,7 @@ export default function ShareButton({ auditId }: ShareButtonProps) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "My AI Spend Audit — SpendLens",
+          title: "My AI Spend Audit — SpendLens by Credex",
           text: "Check out my AI tool spend audit!",
           url: shareUrl,
         });
@@ -55,7 +55,7 @@ export default function ShareButton({ auditId }: ShareButtonProps) {
         variant="outline"
         size="sm"
         onClick={handleShare}
-        className="gap-2"
+        className="gap-2 rounded-lg border-zinc-200 hover:border-[#0FF395]/30 hover:bg-[#0FF395]/5 hover:text-[#086841] transition-all duration-300 font-semibold"
         id="share-button"
       >
         <svg
@@ -78,12 +78,16 @@ export default function ShareButton({ auditId }: ShareButtonProps) {
         variant="outline"
         size="sm"
         onClick={handleCopy}
-        className="gap-2"
+        className={`gap-2 rounded-lg transition-all duration-300 font-semibold ${
+          copied
+            ? "border-[#0FF395] bg-[#0FF395]/10 text-[#086841]"
+            : "border-zinc-200 hover:border-[#0FF395]/30 hover:bg-[#0FF395]/5 hover:text-[#086841]"
+        }`}
         id="copy-link-button"
       >
         {copied ? (
           <>
-            <svg className="h-4 w-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg className="h-4 w-4 text-[#086841]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             Copied!

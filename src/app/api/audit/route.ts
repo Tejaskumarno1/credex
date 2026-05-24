@@ -7,7 +7,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { runAudit, type AuditFormData } from "@/lib/auditEngine";
-import { generateSummary } from "@/lib/anthropic";
+import { generateSummary } from "@/lib/openai";
 import { PRICING_DATA } from "@/lib/pricingData";
 
 // In-memory rate limiting (MVP — swap to Upstash Redis for production)

@@ -6,7 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { generateSummary } from "@/lib/anthropic";
+import { generateSummary } from "@/lib/openai";
 import type { AuditResult, UseCase } from "@/lib/auditEngine";
 
 export async function POST(request: NextRequest) {

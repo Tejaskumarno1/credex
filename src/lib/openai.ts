@@ -1,7 +1,7 @@
 /**
- * Anthropic Claude API integration for personalized audit summaries.
+ * OpenAI API integration for personalized audit summaries.
  *
- * Uses claude-sonnet-4-20250514 via the Vercel AI SDK.
+ * Uses gpt-4o via fetch.
  * Falls back to a deterministic template if the API call fails.
  */
 
@@ -33,9 +33,9 @@ export async function generateSummary(input: SummaryInput): Promise<{
   isAiFallback: boolean;
 }> {
   try {
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
-      console.warn("ANTHROPIC_API_KEY not set — using fallback summary");
+      console.warn("OPENAI_API_KEY not set — using fallback summary");
       return { summary: generateFallbackSummary(input), isAiFallback: true };
     }
 
@@ -63,29 +63,30 @@ ${input.auditResult.alreadyOptimal ? "Their spending is already well-optimized."
 
 Write a ~100 word personalized summary paragraph.`;
 
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
+        "Authorization": `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "gpt-4o",
         max_tokens: 256,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: "user", content: userPrompt }],
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          { role: "user", content: userPrompt }
+        ],
       }),
       signal: AbortSignal.timeout(10000), // 10s timeout
     });
 
     if (!response.ok) {
-      console.error("Anthropic API error:", response.status, await response.text());
+      console.error("OpenAI API error:", response.status, await response.text());
       return { summary: generateFallbackSummary(input), isAiFallback: true };
     }
 
     const data = await response.json();
-    const summary = data.content?.[0]?.text;
+    const summary = data.choices?.[0]?.message?.content;
 
     if (!summary || typeof summary !== "string") {
       return { summary: generateFallbackSummary(input), isAiFallback: true };
