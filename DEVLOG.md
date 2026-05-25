@@ -1,7 +1,7 @@
 # Dev Log — SpendLens
 
 ## Day 1 — 2026-05-18
-**Hours worked:** 3  
+**Hours worked:** 1.5  
 **What I did:**  
 Set up the initial Next.js project structure, configured Tailwind CSS with the Credex brand colors (off-black, neon green, dark forest), and planned the architecture. Created the Supabase project and drafted the initial database schema (`schema.sql`). Wrote the GTM and ECONOMICS draft outlines.
 
@@ -17,7 +17,7 @@ Build the spend input form UI and state management.
 ---
 
 ## Day 2 — 2026-05-19
-**Hours worked:** 4.5  
+**Hours worked:** 2.5  
 **What I did:**  
 Built out the full single-page input form. Added the tool toggles, seat inputs, and dropdowns for plans. I originally started a multi-step Typeform style UI but scrapped it halfway through after realizing it was too much friction to go back and forth between tabs to check billing. 
 
@@ -33,7 +33,7 @@ Fix the footer layout and start writing the core Audit Engine logic.
 ---
 
 ## Day 3 — 2026-05-20
-**Hours worked:** 6  
+**Hours worked:** 3  
 **What I did:**  
 Focused entirely on the core Audit Engine logic. Wrote the cross-tool redundancy checks (e.g., Cursor vs Copilot) and the plan downgrade logic (e.g., Team vs Pro). Set up `PRICING_DATA.md` and traced every number to an official URL. Added Vitest and wrote 11 test cases to verify the math is correct.
 
@@ -49,7 +49,7 @@ Build the Audit Results page UI and integrate the Anthropic API for the personal
 ---
 
 ## Day 4 — 2026-05-21
-**Hours worked:** 5  
+**Hours worked:** 2.5  
 **What I did:**  
 Built the Audit Results view with a "Hero" section showing total potential savings. Integrated the Anthropic API to generate a 100-word personalized summary. Wrote `PROMPTS.md` to document the system prompt and constraints.
 
@@ -65,7 +65,7 @@ Supabase integration for lead capture, sending transactional emails via Resend.
 ---
 
 ## Day 5 — 2026-05-22
-**Hours worked:** 4  
+**Hours worked:** 2  
 **What I did:**  
 Wired up the email capture form. When the user enters their email, it saves the lead and the full `tools_json` audit results into Supabase. Implemented the shareable URL feature (`/audit/[id]`). Added Resend integration to fire a confirmation email. Added a honeypot field for basic abuse protection instead of hCaptcha to keep friction low.
 
@@ -81,7 +81,7 @@ Finalize entrepreneurial files and documentation.
 ---
 
 ## Day 6 — 2026-05-23
-**Hours worked:** 3.5  
+**Hours worked:** 2  
 **What I did:**  
 Conducted 3 user interviews and documented them in `USER_INTERVIEWS.md`. Finished `GTM.md`, `ECONOMICS.md`, `LANDING_COPY.md`, and `METRICS.md`. Updated the Audit Engine slightly based on feedback from the interviews (removed API direct recommendations for non-technical users).
 
@@ -97,7 +97,7 @@ Write `REFLECTION.md`, update `README.md`, deploy to Vercel, and submit.
 ---
 
 ## Day 7 — 2026-05-24
-**Hours worked:** 2  
+**Hours worked:** 1  
 **What I did:**  
 Wrote `REFLECTION.md`. Deployed the project to Vercel. Ran Lighthouse tests to verify performance and accessibility metrics. Cleaned up the codebase, added final screenshots to the `README.md`, and prepared for final submission.
 

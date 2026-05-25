@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import ShareButton from "@/components/ShareButton";
+import Link from "next/link";
 import { runAudit, type AuditFormData, type ToolInput } from "@/lib/auditEngine";
 
 interface PublicAuditViewProps {
@@ -43,7 +44,7 @@ export default function PublicAuditView({ audit, auditId }: PublicAuditViewProps
       {/* Nav */}
       <nav className="credex-glass sticky top-0 z-50 border-b border-black/5">
         <div className="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <div className="h-9 w-9 rounded-xl bg-[#00251A] shadow-lg shadow-[#00251A]/20 flex items-center justify-center group-hover:shadow-xl transition-shadow duration-300">
               <span className="text-[#0FF395] font-extrabold text-sm">S</span>
             </div>
@@ -52,7 +53,7 @@ export default function PublicAuditView({ audit, auditId }: PublicAuditViewProps
               <span className="text-zinc-300 font-light">|</span>
               <span className="text-sm font-semibold text-[#086841]">credex</span>
             </div>
-          </a>
+          </Link>
           <ShareButton auditId={auditId} />
         </div>
       </nav>
@@ -170,7 +171,7 @@ export default function PublicAuditView({ audit, auditId }: PublicAuditViewProps
             <p className="text-zinc-400 text-lg font-medium">
               Get personalized recommendations in 2 minutes. 100% free, no sign-up.
             </p>
-            <a
+            <Link
               href="/"
               className="inline-flex items-center gap-2 mt-4 px-8 py-4 bg-[#0FF395] hover:bg-[#0FF395]/90 text-[#00251A] font-bold rounded-xl shadow-lg shadow-[#0FF395]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#0FF395]/30 active:scale-[0.98] text-base"
               id="run-own-audit-cta"
@@ -179,7 +180,7 @@ export default function PublicAuditView({ audit, auditId }: PublicAuditViewProps
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
           </CardContent>
         </Card>
       </div>

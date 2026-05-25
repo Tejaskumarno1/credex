@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { createClient } from "@supabase/supabase-js";
 import PublicAuditView from "./PublicAuditView";
-
+import Link from "next/link";
 interface PageProps {
   params: Promise<{ id: string }>;
 }
@@ -88,7 +88,7 @@ export default async function AuditPage({ params }: PageProps) {
           <p className="text-zinc-500 font-medium leading-relaxed">
             This audit may have expired or the link is incorrect.
           </p>
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 mt-4 px-8 py-4 bg-[#0FF395] text-[#00251A] font-bold rounded-xl shadow-lg shadow-[#0FF395]/20 hover:shadow-xl hover:shadow-[#0FF395]/30 transition-all duration-300 active:scale-[0.98]"
           >
@@ -96,7 +96,7 @@ export default async function AuditPage({ params }: PageProps) {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
         </div>
       </main>
     );

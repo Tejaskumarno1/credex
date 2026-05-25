@@ -13,7 +13,7 @@ interface LeadCaptureProps {
   totalSavingsAnnual: number;
   summary: string;
   teamSize: number;
-  tools: any[];
+  tools: { toolId: string; planId: string; seats: number; monthlySpend: number }[];
 }
 
 export default function LeadCapture({

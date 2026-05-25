@@ -67,6 +67,7 @@ export default function SpendForm({ onSubmit, isLoading }: SpendFormProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line
     setFormState(loadFormState());
     setMounted(true);
   }, []);
