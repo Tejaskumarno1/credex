@@ -1,6 +1,5 @@
 import { Resend } from "resend";
-import { PRICING_DATA } from "./pricingData";
-
+import { PRICING_DATA, ToolId } from "./pricingData";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface SendAuditEmailParams {
@@ -29,8 +28,9 @@ export async function sendAuditEmail({
     : "";
 
   const toolsHtmlStr = tools && tools.length > 0 ? tools.map(t => {
-    const toolName = PRICING_DATA[t.toolId]?.name || t.toolId;
-    const planName = PRICING_DATA[t.toolId]?.plans.find((p: any) => p.id === t.planId)?.name || t.planId;
+    const toolId = t.toolId as ToolId;
+    const toolName = PRICING_DATA[toolId]?.name || t.toolId;
+    const planName = PRICING_DATA[toolId]?.plans.find((p: any) => p.id === t.planId)?.name || t.planId;
     return `
       <tr>
         <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);color:#e5e5e5;font-size:14px;">
